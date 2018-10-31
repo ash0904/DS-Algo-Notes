@@ -1,0 +1,14 @@
+1) switching off the pc while performing the task on remote computer
+	Use screen commands
+	https://unix.stackexchange.com/questions/9660/how-can-i-keep-processes-running-on-a-remote-server-even-after-turning-off-the-t
+2) wget 
+	wget -r -nc -U  -U "Opera 11.0" https://www.cs.toronto.edu/~vmnih/data/
+	-r = recursive
+	-nc = no copy 
+	-U "Opera 11.0" for behaving like opera browser ( as some sites may not allow some data to be scrapped by wget )
+3) running a command on startup of Ubuntu
+	https://stackoverflow.com/questions/8339555/how-to-run-a-script-at-the-start-up-of-ubuntu
+	sudo vim /etc/rc.local
+
+4) 
+
