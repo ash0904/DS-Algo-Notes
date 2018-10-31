@@ -1,0 +1,157 @@
+#pragma GCC optimize("O3")
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define f(i,a,b) for(long long int i = (a); i < (b); i++)
+#define fd(i,a,b) for(long long int i = (a); i >= (b); i--)
+
+typedef long long int ll;
+typedef pair<ll,ll>   ii;
+typedef vector< ii >  vii;
+typedef vector<ll>    vi;
+typedef vector< vi >  vvi;
+
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+#define sz(a) (ll)(a.size())
+#define all(a) a.begin(),a.end()
+#define allrev(a) a.rbegin(),a.rend()
+#define mset(a,b) memset(a,b,sizeof(a))
+#define tr(c,i) for(auto i = (c).begin(); i != (c).end(); i++)
+/**** Harshit Mahajan (ash0904) ******/
+
+ll mod =  1000000007;
+ll inf =  1000000000000000010;
+ll ninf = -1000000000000000010;
+double PI = 3.141592654;
+template<typename T> inline T gcd(T a,T b){T t;if(a<b){while(a){t=a;a=b%a;b=t;}return b;}else{while(b){t=b;b=a%b;a=t;}return a;}}
+ll power(ll x,ll y)
+{
+  ll ans = 1;
+  while(y>0)
+  {
+    if(y&1)
+      ans = (ans*x)%mod;
+    x = (x*x)%mod;
+    y = y>>1;
+  }
+  return ans;
+}
+
+#define nscan(n) scanf("%d",&n)
+#define nscan2(n,m) scanf("%d%d",&n,&m)
+#define nprint(n) printf("%d\n",n)
+#define scan(n) scanf("%lld",&n)
+#define scan2(n,m) scanf("%lld%lld",&n,&m)
+#define scan3(n,m,o) scanf("%lld%lld%lld",&n,&m,&o)
+#define print(n) printf("%lld\n",n)
+#define print2(n,m) printf("%lld %lld\n",n,m)
+#define print3(n,m,o) printf("%lld%lld%lld",&n,&m,&o)
+#define strin(s) scanf("%s",s)
+#define strout(n) printf("%s\n",n)
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL)
+
+#define TRACE
+#ifdef TRACE
+#define trace(...) __f(#__VA_ARGS__, __VA_ARGS__)
+template <typename Arg1>
+void __f(const char* name, Arg1&& arg1){
+        cerr << name << " : " << arg1 << std::endl;
+}
+template <typename Arg1, typename... Args>
+void __f(const char* names, Arg1&& arg1, Args&&... args){
+        const char* comma = strchr(names + 1, ',');cerr.write(names, comma - names) << " : " << arg1<<" | ";__f(comma+1, args...);
+}
+#else
+#define trace(...)
+#endif
+
+vi arr(1000010, 0);
+
+int main()
+{
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  ll test;
+  cin>>test;
+  while(test--){
+    ll x[10],y[10],mx=inf,my=inf;
+    f(i,0,5){
+      cin>>x[i]>>y[i];
+      mx = min(mx,x[i]);
+      my = min(my,y[i]);
+    }
+    f(i,0,5){
+      x[i] -= mx;
+      y[i] -= my;
+    }
+    // trace(mx,my);
+    set< pair < ll,ll > > pnts;
+    f(i,0,5){
+      // cout<<x[i]<<" "<<y[i]<<"\n";
+      pnts.insert(mp(x[i],y[i]));
+    }
+    ll ans;
+    if(pnts.find(mp(1,1)) == pnts.end()){
+      ans = 0;
+    }
+    else{
+      if(pnts.find(mp(2,0)) != pnts.end()){
+        if(pnts.find(mp(2,2)) != pnts.end()){
+          if(pnts.find(mp(2,1)) != pnts.end() && pnts.find(mp(0,1)) != pnts.end()){
+            ans = 1;
+          }
+          else{
+            ans = 0;
+          }
+        }
+        else if(pnts.find(mp(0,0)) != pnts.end()){
+          if(pnts.find(mp(1,0)) != pnts.end() && pnts.find(mp(1,2)) != pnts.end()){
+            ans = 1;
+          }
+          else{
+            ans = 0;
+          }
+        }
+        else{
+          ans = 0;
+        }
+      }
+      else if(pnts.find(mp(0,2)) != pnts.end()){
+        if(pnts.find(mp(2,2)) != pnts.end()){
+          if(pnts.find(mp(1,2)) != pnts.end() && pnts.find(mp(1,0)) != pnts.end()){
+            ans = 1;
+          }
+          else{
+            ans = 0;
+          }
+        }
+        else if(pnts.find(mp(0,0)) != pnts.end()){
+          if(pnts.find(mp(0,1)) != pnts.end() && pnts.find(mp(2,1)) != pnts.end()){
+            ans = 1;
+          }
+          else{
+            ans = 0;
+          }
+        }
+        else{
+          ans = 0;
+        }
+      }
+      else{
+        ans = 0;
+      }
+    }
+    if(ans == 1){
+      cout<<"Yes\n";
+    }
+    else{
+      cout<<"No\n";
+    }
+  }
+
+  return 0;
+}
